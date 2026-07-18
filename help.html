@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Centro de Ayuda | Multasscan</title>
+  <meta name="description" content="Soluciones a problemas comunes al consultar tus multas con Multasscan.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Mismo estilo base que gracias.html */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at 10% 20%, rgba(2, 10, 30, 1) 0%, rgba(0, 5, 20, 1) 100%);
+      color: #eef2ff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      overflow-x: hidden;
+    }
+
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background: radial-gradient(ellipse at 30% 40%, #0a0f2a, #030617);
+    }
+
+    .bg-animation::before {
+      content: "";
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+      background: repeating-linear-gradient(transparent 0%, rgba(0, 255, 255, 0.02) 1%, transparent 2%);
+      animation: shift 20s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes shift {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(10%, 10%); }
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+      margin: 0 auto;
+      background: rgba(15, 25, 45, 0.6);
+      backdrop-filter: blur(12px);
+      border-radius: 2.5rem;
+      padding: 2.5rem 2rem;
+      border: 1px solid rgba(0, 255, 255, 0.25);
+      box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.5);
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .header-icon {
+      text-align: center;
+      font-size: 3rem;
+      color: #2dd4bf;
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      text-align: center;
+      background: linear-gradient(135deg, #ffffff, #7aa2f7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #b9c7e0;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    .problem-card {
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-left: 4px solid #2dd4bf;
+      transition: 0.2s;
+    }
+
+    .problem-card:hover {
+      background: rgba(0, 0, 0, 0.35);
+    }
+
+    .problem-card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #eef2ff;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .problem-card h3 i {
+      color: #fbbf24;
+      font-size: 1.3rem;
+      width: 1.8rem;
+      text-align: center;
+    }
+
+    .problem-card p,
+    .problem-card li {
+      color: #cbd5f0;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .problem-card ul {
+      padding-left: 1.8rem;
+      margin: 0.5rem 0 0.2rem;
+    }
+
+    .problem-card ul li {
+      list-style-type: disc;
+    }
+
+    .solution-step {
+      background: rgba(45, 212, 191, 0.08);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      display: inline-block;
+      font-size: 0.85rem;
+      color: #2dd4bf;
+      margin-top: 0.3rem;
+    }
+
+    .btn-whatsapp-help {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(95deg, #25D366, #128C7E);
+      color: white;
+      padding: 0.7rem 1.5rem;
+      border-radius: 60px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+      transition: 0.2s;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+    }
+
+    .btn-whatsapp-help:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.5);
+    }
+
+    .btn-back {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      padding: 0.7rem 1.5rem;
+      border-radius: 60px;
+      color: #cbd5f0;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+      margin-top: 1rem;
+    }
+
+    .btn-back:hover {
+      background: rgba(0, 255, 255, 0.1);
+      border-color: #2dd4bf;
+      color: white;
+    }
+
+    .footer-help {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #6b7c9e;
+    }
+
+    .footer-help a {
+      color: #8fcbff;
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 1.5rem; }
+      h1 { font-size: 1.8rem; }
+      .problem-card h3 { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="bg-animation"></div>
+<div class="container">
+  <div class="header-icon">
+    <i class="fas fa-life-ring"></i>
+  </div>
+  <h1>Centro de Ayuda</h1>
+  <p class="subtitle">Encuentra solución a los problemas más comunes al usar Multasscan</p>
+
+  <!-- Problema 1: No se genera el pago -->
+  <div class="problem-card">
+    <h3><i class="fas fa-exclamation-triangle"></i> No se puede generar el pago</h3>
+    <p>Si al intentar pagar ves un error o la pantalla se queda cargando sin finalizar:</p>
+    <ul>
+      <li><strong>Vuelve a intentarlo</strong> usando el mismo enlace de pago que recibiste en WhatsApp. A veces es un problema temporal de conexión.</li>
+      <li>Si el error persiste, cierra el navegador y abre el enlace nuevamente desde el mensaje de WhatsApp.</li>
+      <li>Verifica que tu medio de pago (tarjeta o cuenta) tenga fondos suficientes y esté habilitado para compras online.</li>
+    </ul>
+    <span class="solution-step"><i class="fas fa-arrow-right"></i> Reintenta con el mismo enlace</span>
+  </div>
+
+  <!-- Problema 2: Pagué pero no recibí el informe -->
+  <div class="problem-card">
+    <h3><i class="fas fa-clock"></i> Realicé el pago y no llegó el informe</h3>
+    <p>El informe suele llegar en <strong>menos de 30 minutos</strong> por WhatsApp. Si pasó más tiempo:</p>
+    <ul>
+      <li>Revisa tu bandeja de <strong>mensajes no deseados</strong> o spam en WhatsApp.</li>
+      <li>Asegúrate de que tu número esté correcto y con conexión a internet.</li>
+      <li>Si después de 30 minutos no recibes nada, contáctanos directamente por WhatsApp haciendo clic en el botón de abajo.</li>
+    </ul>
+    <a href="https://wa.me/56997629132?text=Hola%2C%20realic%C3%A9%20el%20pago%20y%20no%20he%20recibido%20el%20informe%20de%20multas.%20Mi%20patente%20es%3A%20" target="_blank" class="btn-whatsapp-help">
+      <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+    </a>
+  </div>
+
+  <!-- Problema 3: El enlace de pago expiró -->
+  <div class="problem-card">
+    <h3><i class="fas fa-link"></i> El enlace de pago expiró</h3>
+    <p>Los enlaces de pago son válidos por un tiempo limitado por seguridad. Si al hacer clic ves un mensaje de expiración:</p>
+    <ul>
+      <li>Solicita un <strong>nuevo enlace</strong> enviando un mensaje al número de WhatsApp desde donde iniciaste la consulta.</li>
+      <li>Indica tu patente y el agente te generará un nuevo enlace en pocos minutos.</li>
+    </ul>
+    <span class="solution-step"><i class="fas fa-arrow-right"></i> Pide un nuevo enlace por WhatsApp</span>
+  </div>
+
+  <!-- Problema 4: No encuentro mi patente en el sistema -->
+  <div class="problem-card">
+    <h3><i class="fas fa-car"></i> Mi patente no aparece en los resultados</h3>
+    <p>Esto puede ocurrir si:</p>
+    <ul>
+      <li>La patente no tiene multas registradas en el SRCEI o en las cámaras fiscalizadoras.</li>
+      <li>Ingresaste mal la patente (revisa que tenga el formato correcto, ej: <strong>ABCD12</strong>).</li>
+      <li>El sistema puede tardar hasta 24 horas en actualizar multas recientes.</li>
+    </ul>
+    <span class="solution-step"><i class="fas fa-arrow-right"></i> Verifica la patente y vuelve a intentar</span>
+  </div>
+
+  <!-- Botón volver al inicio -->
+  <div style="text-align: center; margin-top: 2rem;">
+    <a href="/" class="btn-back">
+      <i class="fas fa-arrow-left"></i> Volver al inicio
+    </a>
+  </div>
+
+  <div class="footer-help">
+    <i class="fas fa-lock"></i> Tus datos están seguros. Multasscan es un servicio de <strong>Ingenio Natural Spa</strong>.
+  </div>
+</div>
+</body>
+</html>
