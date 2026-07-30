@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta name="facebook-domain-verification" content="lzt9heg89nusctzl8ro4mr465ct5ze" />
-  <meta name="google-site-verification" content="75dhQH1c5pwQWqA42dzgltVf_ZgRvO5uJ9Y5SGN8h34" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Multasscan | Pago Confirmado por Ingenio Natural Spa</title>
-  <meta name="description" content="Tu pago al servicio Multasscan de Ingenio Natural Spa ha sido recibido. En breve recibirás el informe de multas por WhatsApp.">
+  <title>Pago Confirmado | Multasscan</title>
+  <meta name="description" content="Tu pago al servicio Multasscan ha sido recibido. En breve recibirás el informe de multas por WhatsApp.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
+    /* ========== ESTILOS BASE ========== */
     * {
       margin: 0;
       padding: 0;
@@ -24,6 +23,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 2rem 1rem;
       overflow-x: hidden;
     }
 
@@ -55,10 +55,9 @@
     }
 
     .container {
-      max-width: 600px;
-      width: 90%;
-      margin: 2rem auto;
-      text-align: center;
+      max-width: 700px;
+      width: 100%;
+      margin: 0 auto;
       background: rgba(15, 25, 45, 0.6);
       backdrop-filter: blur(12px);
       border-radius: 2.5rem;
@@ -85,7 +84,6 @@
       background: rgba(45, 212, 191, 0.15);
       width: 120px;
       height: 120px;
-      line-height: 120px;
       border-radius: 60px;
       margin: 0 auto 1.5rem;
       border: 2px solid rgba(45, 212, 191, 0.6);
@@ -101,31 +99,88 @@
     h1 {
       font-size: 2.2rem;
       font-weight: 800;
+      text-align: center;
       background: linear-gradient(135deg, #ffffff, #7aa2f7);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
     }
 
-    .message {
-      font-size: 1.3rem;
+    .subtitle {
+      text-align: center;
+      color: #b9c7e0;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .message-box {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 1.5rem;
+      padding: 1.5rem;
       margin: 1.5rem 0;
-      color: #cbd5f0;
-      line-height: 1.4;
+      border-left: 4px solid #2dd4bf;
     }
 
-    .whatsapp-note {
-      background: rgba(37, 211, 102, 0.12);
-      border-left: 4px solid #25D366;
-      padding: 1rem;
-      border-radius: 1rem;
+    .message-box p {
+      color: #cbd5f0;
+      line-height: 1.6;
+    }
+
+    .message-box strong {
+      color: #2dd4bf;
+    }
+
+    /* ====== SECCIÓN DE TESTIMONIO ====== */
+    .testimonial-cta {
+      background: rgba(45, 212, 191, 0.06);
+      border-radius: 1.5rem;
+      padding: 1.8rem;
+      margin: 1.5rem 0;
+      border: 1px solid rgba(45, 212, 191, 0.15);
+      text-align: center;
+    }
+
+    .testimonial-cta h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #eef2ff;
+      margin-bottom: 0.5rem;
+    }
+
+    .testimonial-cta h3 i {
+      color: #fbbf24;
+      margin-right: 8px;
+    }
+
+    .testimonial-cta p {
+      color: #b9c7e0;
       font-size: 0.95rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .testimonial-cta .btn-testimonial {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      margin: 1.5rem 0;
-      color: #bbf0d0;
+      background: linear-gradient(95deg, #fbbf24, #f59e0b);
+      color: #030617;
+      padding: 0.8rem 1.8rem;
+      border-radius: 60px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: 0.2s;
+      box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+    }
+
+    .testimonial-cta .btn-testimonial:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 25px rgba(251, 191, 36, 0.5);
+    }
+
+    .testimonial-cta .btn-testimonial i {
+      font-size: 1.2rem;
     }
 
     .btn-home {
@@ -138,7 +193,7 @@
       text-decoration: none;
       font-weight: 500;
       transition: 0.2s;
-      margin-top: 1rem;
+      margin-top: 0.5rem;
     }
 
     .btn-home:hover {
@@ -147,44 +202,39 @@
       color: white;
     }
 
+    .whatsapp-note {
+      background: rgba(37, 211, 102, 0.08);
+      border-left: 3px solid #25D366;
+      padding: 0.8rem 1rem;
+      border-radius: 1rem;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0.5rem 0 1rem;
+      color: #bbf0d0;
+    }
+
     footer {
-      margin-top: 2rem;
+      margin-top: 1.5rem;
+      text-align: center;
       font-size: 0.75rem;
       color: #6b7c9e;
     }
 
+    footer a {
+      color: #8fcbff;
+      text-decoration: none;
+    }
+
     @media (max-width: 500px) {
-      .container { padding: 2rem 1.2rem; }
+      .container { padding: 1.5rem; }
       h1 { font-size: 1.6rem; }
-      .message { font-size: 1.1rem; }
-      .check-icon { width: 80px; height: 80px; line-height: 80px; }
+      .check-icon { width: 80px; height: 80px; }
       .check-icon i { font-size: 2.5rem; }
+      .testimonial-cta .btn-testimonial { font-size: 0.9rem; padding: 0.7rem 1.2rem; }
     }
   </style>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Multasscan",
-  "description": "Servicio de consulta de multas vehiculares en Chile",
-  "url": "https://multasscan.github.io/multas_scan/",
-  "parentOrganization": {
-    "@type": "Organization",
-    "name": "Ingenio Natural Spa",
-    "legalName": "Ingenio Natural Spa",
-    "url": "https://multasscan.github.io/multas_scan/",
-    "sameAs": [
-      "https://www.instagram.com/tu_cuenta_aqui",
-      "https://www.facebook.com/tu_pagina_aqui"
-    ]
-  },
-  "potentialAction": {
-    "@type": "CommunicateAction",
-    "name": "Consultar multas",
-    "target": "https://wa.me/56935692418?text=Hola%2C%20quiero%20consultar%20el%20estado%20de%20multas%20para%20mi%20patente"
-  }
-}
-</script>
 </head>
 <body>
 <div class="bg-animation"></div>
@@ -192,21 +242,48 @@
   <div class="check-icon">
     <i class="fas fa-check-circle"></i>
   </div>
+
   <h1>¡Pago recibido!</h1>
-  <div class="message">
-    <strong>✅ Transacción exitosa</strong><br>
-    En breve recibirás el informe completo de multas por WhatsApp.
-  </div>
+  <p class="subtitle">✅ Transacción exitosa. Tu informe está en camino.</p>
+
   <div class="whatsapp-note">
     <i class="fab fa-whatsapp fa-lg"></i>
-    <span>El agente Multasscan te enviará los resultados a tu número de WhatsApp dentro de los próximos minutos.</span>
+    <span>El agente Multasscan te enviará los resultados a tu WhatsApp en los próximos minutos.</span>
   </div>
-  <!-- ✅ ENLACE CORREGIDO: ahora apunta a la raíz del dominio -->
-  <a href="/" class="btn-home">
-    <i class="fas fa-arrow-left"></i> Volver al inicio
-  </a>
+
+  <div class="message-box">
+    <p>
+      <strong>📋 ¿Qué pasa ahora?</strong><br>
+      El sistema está consultando las bases del <strong>SRCEI (Registro Civil)</strong> y las <strong>cámaras de fiscalización (RRVV)</strong>.
+      En menos de 5 minutos recibirás un informe detallado con todas las multas de tu vehículo.
+    </p>
+  </div>
+
+  <!-- ====== NUEVA SECCIÓN: LLAMADO A TESTIMONIO ====== -->
+  <div class="testimonial-cta">
+    <h3><i class="fas fa-star"></i> ¿Te ayudó Multasscan?</h3>
+    <p>
+      <strong>Ayúdanos a crecer y <span style="color: #fbbf24;">gana una consulta GRATIS</span> 🎁</strong><br>
+      Déjanos tu testimonio respondiendo 3 preguntas rápidas y te enviaremos un código para consultar otra patente sin costo.
+    </p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfHfM4W0MBuTOs68J1n54TFh_8n9jRjxKpL7vLfVpz7Wp_5hg/viewform" target="_blank" class="btn-testimonial">
+      <i class="fas fa-pen-fancy"></i> Dejar mi testimonio
+    </a>
+    <p style="font-size: 0.75rem; color: #6b7c9e; margin-top: 0.5rem;">
+      <i class="fas fa-lock"></i> Tus datos están seguros. Solo usaremos tu nombre y ciudad para publicar.
+    </p>
+  </div>
+
+  <!-- ====== ENLACE VOLVER ====== -->
+  <div style="text-align: center; margin-top: 1.5rem;">
+    <a href="/" class="btn-home">
+      <i class="fas fa-arrow-left"></i> Volver al inicio
+    </a>
+  </div>
+
   <footer>
-    <i class="fas fa-lock"></i> Pago procesado de forma segura. No almacenamos datos bancarios. Multasscan es un marca de Ingenio Natural SPA
+    <i class="fas fa-lock"></i> Pago procesado de forma segura. No almacenamos datos bancarios.<br>
+    Multasscan es un servicio de <a href="/">Ingenio Natural Spa</a>
   </footer>
 </div>
 </body>
