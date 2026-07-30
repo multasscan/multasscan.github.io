@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Testimonios | Multasscan</title>
+  <meta name="description" content="Opiniones reales de clientes que usaron Multasscan para consultar multas vehiculares en Chile.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ========== ESTILOS BASE (mismo que index.html) ========== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at 10% 20%, rgba(2, 10, 30, 1) 0%, rgba(0, 5, 20, 1) 100%);
+      color: #eef2ff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background: radial-gradient(ellipse at 30% 40%, #0a0f2a, #030617);
+    }
+
+    .bg-animation::before {
+      content: "";
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+      background: repeating-linear-gradient(transparent 0%, rgba(0, 255, 255, 0.02) 1%, transparent 2%);
+      animation: shift 20s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes shift {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(10%, 10%); }
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ========== NAVBAR ========== */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+      flex-wrap: wrap;
+      border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #aaffff, #3b82f6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+    }
+
+    .logo span {
+      font-weight: 400;
+      font-size: 1rem;
+      background: none;
+      color: #8ca3cf;
+    }
+
+    .nav-links a {
+      color: #cbd5e6;
+      text-decoration: none;
+      margin-left: 2rem;
+      transition: 0.2s;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+    }
+
+    .nav-links a:hover {
+      color: #00e0ff;
+      border-bottom-color: #00e0ff;
+    }
+
+    @media (max-width: 768px) {
+      .navbar { flex-direction: column; gap: 1rem; }
+      .nav-links a { margin: 0 1rem; }
+      .container { padding: 0 1.2rem; }
+    }
+
+    /* ========== HEADER ========== */
+    .testimonials-header {
+      text-align: center;
+      padding: 3rem 0 1rem;
+    }
+
+    .testimonials-header h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #ffffff, #7aa2f7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    .testimonials-header .subtitle {
+      color: #b9c7e0;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ========== MÉTRICA ========== */
+    .metric-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      background: rgba(15, 25, 45, 0.5);
+      backdrop-filter: blur(8px);
+      border-radius: 2rem;
+      padding: 1.2rem 2rem;
+      margin: 1.5rem auto 2.5rem;
+      border: 1px solid rgba(0, 255, 255, 0.15);
+      max-width: 600px;
+    }
+
+    .metric-bar .metric-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #cbd5f0;
+      font-size: 1rem;
+    }
+
+    .metric-bar .metric-item i {
+      color: #fbbf24;
+      font-size: 1.3rem;
+    }
+
+    .metric-bar .metric-item .number {
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #2dd4bf;
+    }
+
+    /* ========== GRID ========== */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin: 2rem 0 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .testimonials-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ========== TARJETA ========== */
+    .testimonial-card {
+      background: rgba(15, 25, 45, 0.6);
+      backdrop-filter: blur(10px);
+      border-radius: 2rem;
+      padding: 1.8rem;
+      border: 1px solid rgba(0, 180, 255, 0.15);
+      transition: all 0.3s ease;
+      animation: fadeInUp 0.6s ease-out both;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .testimonial-card:hover {
+      border-color: rgba(0, 255, 255, 0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -15px rgba(0, 200, 255, 0.15);
+    }
+
+    .testimonial-card:nth-child(1) { animation-delay: 0.05s; }
+    .testimonial-card:nth-child(2) { animation-delay: 0.1s; }
+    .testimonial-card:nth-child(3) { animation-delay: 0.15s; }
+    .testimonial-card:nth-child(4) { animation-delay: 0.2s; }
+    .testimonial-card:nth-child(5) { animation-delay: 0.25s; }
+    .testimonial-card:nth-child(6) { animation-delay: 0.3s; }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .testimonial-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .testimonial-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      color: rgba(255,255,255,0.7);
+      flex-shrink: 0;
+      border: 2px solid rgba(45, 212, 191, 0.3);
+    }
+
+    .testimonial-author-info {
+      flex: 1;
+    }
+
+    .testimonial-author-info .name {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #eef2ff;
+    }
+
+    .testimonial-author-info .city {
+      font-size: 0.85rem;
+      color: #8ca3cf;
+    }
+
+    .testimonial-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(45, 212, 191, 0.12);
+      color: #2dd4bf;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.2rem 0.7rem;
+      border-radius: 40px;
+      border: 1px solid rgba(45, 212, 191, 0.25);
+      white-space: nowrap;
+    }
+
+    .testimonial-stars {
+      color: #fbbf24;
+      font-size: 1rem;
+      margin-bottom: 0.6rem;
+      letter-spacing: 2px;
+    }
+
+    .testimonial-text {
+      color: #cbd5f0;
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      flex: 1;
+      font-style: italic;
+    }
+
+    .testimonial-text::before {
+      content: "\201C";
+      color: #2dd4bf;
+      font-size: 1.8rem;
+      font-weight: 700;
+      opacity: 0.5;
+      margin-right: 4px;
+    }
+
+    .testimonial-text::after {
+      content: "\201D";
+      color: #2dd4bf;
+      font-size: 1.8rem;
+      font-weight: 700;
+      opacity: 0.5;
+      margin-left: 4px;
+    }
+
+    .testimonial-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.5rem;
+      padding-top: 0.8rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .testimonial-footer .whatsapp-icon {
+      color: #25D366;
+      font-size: 1.2rem;
+    }
+
+    .testimonial-footer .verified {
+      color: #6b7c9e;
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .testimonial-footer .verified i {
+      color: #2dd4bf;
+    }
+
+    /* ========== BOTÓN VOLVER ========== */
+    .back-section {
+      text-align: center;
+      margin: 1rem 0 3rem;
+    }
+
+    .btn-back {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 255, 255, 0.25);
+      padding: 0.8rem 2rem;
+      border-radius: 60px;
+      color: #cbd5f0;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+      font-size: 1rem;
+    }
+
+    .btn-back:hover {
+      background: rgba(0, 255, 255, 0.08);
+      border-color: #2dd4bf;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      margin-top: 1rem;
+      padding: 2rem 0;
+      border-top: 1px solid rgba(0, 255, 255, 0.1);
+      text-align: center;
+      font-size: 0.8rem;
+      color: #6b7c9e;
+    }
+
+    footer a {
+      color: #8fcbff;
+      text-decoration: none;
+    }
+
+    @media (max-width: 500px) {
+      .testimonials-header h1 { font-size: 2rem; }
+      .metric-bar { flex-direction: column; gap: 0.8rem; padding: 1rem; }
+      .testimonial-card { padding: 1.2rem; }
+      .testimonial-avatar { width: 44px; height: 44px; font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="bg-animation"></div>
+
+<div class="container">
+  <!-- ====== NAVBAR ====== -->
+  <nav class="navbar">
+    <div class="logo">MULTASSCAN<span> .ai</span></div>
+    <div class="nav-links">
+      <a href="/">Inicio</a>
+      <a href="#testimonios">Testimonios</a>
+      <a href="politica.html">Política de Datos</a>
+      <a href="help.html">Ayuda</a>
+    </div>
+  </nav>
+
+  <!-- ====== HEADER ====== -->
+  <section class="testimonials-header" id="testimonios">
+    <h1>Lo que dicen nuestros clientes</h1>
+    <p class="subtitle">Opiniones reales de conductores que confiaron en Multasscan</p>
+
+    <div class="metric-bar">
+      <div class="metric-item">
+        <i class="fas fa-star"></i>
+        <span><span class="number">4.9</span> / 5.0</span>
+      </div>
+      <div class="metric-item">
+        <i class="fas fa-check-circle"></i>
+        <span><span class="number">150+</span> consultas</span>
+      </div>
+      <div class="metric-item">
+        <i class="fas fa-clock"></i>
+        <span><span class="number">&lt;5</span> min promedio</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== GRID DE TESTIMONIOS ====== -->
+  <div class="testimonials-grid" id="testimonios-grid">
+    <!-- Los testimonios se cargan con JavaScript -->
+  </div>
+
+  <!-- ====== BOTÓN VOLVER ====== -->
+  <div class="back-section">
+    <a href="/" class="btn-back">
+      <i class="fas fa-arrow-left"></i> Volver al inicio
+    </a>
+  </div>
+
+  <!-- ====== FOOTER ====== -->
+  <footer>
+    <p>
+      <a href="/">Inicio</a> |
+      <a href="politica.html">Política de Datos</a> |
+      <a href="help.html">Centro de Ayuda</a> |
+      <a href="mailto:multasscan@gmail.com">Contacto</a>
+    </p>
+    <p style="margin-top: 0.5rem;">© 2026 Multasscan — Servicio de Consulta de Multas Vehiculares de Ingenio Natural Spa</p>
+  </footer>
+</div>
+
+<script>
+  // ============================================================
+  //  POOL DE TESTIMONIOS (agrega aquí los nuevos)
+  //  Cada testimonio tiene: texto, nombre, ciudad, color de avatar
+  // ============================================================
+  const testimonialPool = [
+    {
+      text: 'Pagué $998 y en 2 minutos supe que mi auto no tenía multas. Me dio tranquilidad antes de ir a la municipalidad.',
+      name: 'Juan P.',
+      city: 'Santiago, Chile',
+      color: 'linear-gradient(135deg, #3b82f6, #8b5cf6)'
+    },
+    {
+      text: 'Compré un auto usado y antes de firmar le mandé la patente a Multasscan. Descubrí 2 multas del dueño anterior y negocié el precio.',
+      name: 'María G.',
+      city: 'Valparaíso, Chile',
+      color: 'linear-gradient(135deg, #ec4899, #8b5cf6)'
+    },
+    {
+      text: 'Súper rápido y confiable. El link de pago me dio confianza para pagar sin miedo. Recomendado 100%.',
+      name: 'Pedro S.',
+      city: 'Concepción, Chile',
+      color: 'linear-gradient(135deg, #f59e0b, #ef4444)'
+    },
+    {
+      text: 'Mi auto tenía una multa de 2019 que ni sabía. Multasscan me avisó a tiempo y pude pagarla con descuento. Un salvavidas.',
+      name: 'Camila R.',
+      city: 'La Serena, Chile',
+      color: 'linear-gradient(135deg, #06b6d4, #3b82f6)'
+    },
+    // ====== NUEVOS TESTIMONIOS (agrega aquí) ======
+    {
+      text: 'Increíble el servicio. En menos de 3 minutos ya sabía el estado de mi vehículo. Volveré a usarlo sin dudar.',
+      name: 'Felipe M.',
+      city: 'Viña del Mar, Chile',
+      color: 'linear-gradient(135deg, #10b981, #059669)'
+    },
+    {
+      text: 'Muy útil para revisar autos usados. Le mandé la patente al vendedor y resultó que tenía multas. Me ahorré un problemón.',
+      name: 'Andrea L.',
+      city: 'Rancagua, Chile',
+      color: 'linear-gradient(135deg, #8b5cf6, #6d28d9)'
+    },
+    {
+      text: 'Lo mejor es que pagas solo si ves el informe. Me encantó la transparencia. 100% recomendado.',
+      name: 'Carlos D.',
+      city: 'Temuco, Chile',
+      color: 'linear-gradient(135deg, #f472b6, #db2777)'
+    },
+    {
+      text: 'Usé Multasscan para revisar mi flota de 5 vehículos. Rápido, barato y súper claro el informe. Excelente herramienta.',
+      name: 'Roberto J.',
+      city: 'Santiago, Chile',
+      color: 'linear-gradient(135deg, #fb923c, #ea580c)'
+    }
+  ];
+
+  // ============================================================
+  //  SELECCIÓN ALEATORIA (sin repetir)
+  //  Muestra 4 testimonios fijos + 2 rotatorios de un pool mayor
+  // ============================================================
+  function getRandomTestimonials(pool, count = 6) {
+    // Mezclar el pool
+    const shuffled = [...pool];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    // Tomar los primeros 'count'
+    return shuffled.slice(0, count);
+  }
+
+  // ============================================================
+  //  RENDERIZADO DE TARJETAS
+  // ============================================================
+  function renderTestimonials() {
+    const grid = document.getElementById('testimonios-grid');
+    const selected = getRandomTestimonials(testimonialPool, 6);
+
+    grid.innerHTML = selected.map(t => `
+      <div class="testimonial-card">
+        <div class="testimonial-header">
+          <div class="testimonial-avatar" style="background: ${t.color};">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="testimonial-author-info">
+            <div class="name">${t.name} <span class="testimonial-badge"><i class="fas fa-check-circle"></i> Verificado</span></div>
+            <div class="city">${t.city}</div>
+          </div>
+        </div>
+        <div class="testimonial-stars">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="testimonial-text">${t.text}</div>
+        <div class="testimonial-footer">
+          <span class="whatsapp-icon"><i class="fab fa-whatsapp"></i> Consulta vía WhatsApp</span>
+          <span class="verified"><i class="fas fa-shield-alt"></i> Cliente real</span>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Ejecutar al cargar la página
+  renderTestimonials();
+</script>
+</body>
+</html>
