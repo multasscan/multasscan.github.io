@@ -10,13 +10,58 @@
   <!-- Google Fonts + Font Awesome -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1ERDMD3XM7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1ERDMD3XM7');
+
+    // Evento: Click en boton WhatsApp
+    function trackWhatsAppClick(location) {
+      gtag('event', 'whatsapp_click', {
+        'event_category': 'engagement',
+        'event_label': location,
+        'value': 1,
+        'transport_type': 'beacon'
+      });
     }
 
+    // Evento: Scroll depth 75%
+    let scrollTracked = false;
+    window.addEventListener('scroll', function() {
+      if (scrollTracked) return;
+      const scrollPercent = (window.scrollY + window.innerHeight) / document.body.scrollHeight * 100;
+      if (scrollPercent > 75) {
+        gtag('event', 'scroll_depth', {
+          'event_category': 'engagement',
+          'event_label': '75_percent',
+          'value': 75
+        });
+        scrollTracked = true;
+      }
+    });
+
+    // Capturar UTM parameters
+    (function captureUTM() {
+      const params = new URLSearchParams(window.location.search);
+      const utmData = {};
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].forEach(key => {
+        if (params.has(key)) {
+          utmData[key] = params.get(key);
+          sessionStorage.setItem(key, params.get(key));
+        }
+      });
+      if (Object.keys(utmData).length > 0) {
+        gtag('event', 'utm_captured', utmData);
+      }
+    })();
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Inter', sans-serif;
       background: radial-gradient(circle at 10% 20%, rgba(2, 10, 30, 1) 0%, rgba(0, 5, 20, 1) 100%);
@@ -24,34 +69,31 @@
       line-height: 1.5;
       overflow-x: hidden;
     }
+<<<<<<< HEAD
+=======
 
+>>>>>>> 28eb7e496bc0c8572b70289fe190b9b7379156aa
     .bg-animation {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -2;
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;
       background: radial-gradient(ellipse at 30% 40%, #0a0f2a, #030617);
     }
-
     .bg-animation::before {
       content: "";
-      position: absolute;
-      width: 200%;
-      height: 200%;
-      top: -50%;
-      left: -50%;
+      position: absolute; width: 200%; height: 200%; top: -50%; left: -50%;
       background: repeating-linear-gradient(transparent 0%, rgba(0, 255, 255, 0.02) 1%, transparent 2%);
       animation: shift 20s linear infinite;
       pointer-events: none;
     }
-
     @keyframes shift {
       0% { transform: translate(0, 0); }
       100% { transform: translate(10%, 10%); }
     }
+    html { scroll-behavior: smooth; }
+    .container { max-width: 1300px; margin: 0 auto; padding: 0 2rem; }
 
+<<<<<<< HEAD
+    /* Navbar */
+=======
     html {
       scroll-behavior: smooth;
     }
@@ -62,25 +104,22 @@
       padding: 0 2rem;
     }
 
+>>>>>>> 28eb7e496bc0c8572b70289fe190b9b7379156aa
     .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.5rem 0;
-      flex-wrap: wrap;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.5rem 0; flex-wrap: wrap;
       border-bottom: 1px solid rgba(0, 255, 255, 0.2);
       backdrop-filter: blur(8px);
     }
-
     .logo {
-      font-size: 1.8rem;
-      font-weight: 800;
+      font-size: 1.8rem; font-weight: 800;
       background: linear-gradient(135deg, #aaffff, #3b82f6);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      -webkit-background-clip: text; background-clip: text; color: transparent;
       letter-spacing: -0.02em;
     }
+<<<<<<< HEAD
+    .logo span { font-weight: 400; font-size: 1rem; background: none; color: #8ca3cf; }
+=======
 
     .logo span {
       font-weight: 400;
@@ -89,198 +128,265 @@
       color: #8ca3cf;
     }
 
+>>>>>>> 28eb7e496bc0c8572b70289fe190b9b7379156aa
     .nav-links a {
-      color: #cbd5e6;
-      text-decoration: none;
-      margin-left: 2rem;
-      transition: 0.2s;
-      font-weight: 500;
-      border-bottom: 1px solid transparent;
+      color: #cbd5e6; text-decoration: none; margin-left: 2rem;
+      transition: 0.2s; font-weight: 500; border-bottom: 1px solid transparent;
     }
+    .nav-links a:hover { color: #00e0ff; border-bottom-color: #00e0ff; }
 
+<<<<<<< HEAD
+    /* Hero */
+=======
     .nav-links a:hover {
       color: #00e0ff;
       border-bottom-color: #00e0ff;
     }
 
+>>>>>>> 28eb7e496bc0c8572b70289fe190b9b7379156aa
     .hero {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      padding: 3rem 0 5rem;
-      gap: 2rem;
+      display: flex; flex-wrap: wrap; align-items: center;
+      justify-content: space-between; padding: 3rem 0 4rem; gap: 2rem;
     }
-
-    .hero-text {
-      flex: 1;
-      min-width: 280px;
-    }
-
+    .hero-text { flex: 1; min-width: 280px; }
     .hero-text h1 {
-      font-size: 3.5rem;
-      font-weight: 800;
-      line-height: 1.2;
+      font-size: 3.2rem; font-weight: 800; line-height: 1.15;
       background: linear-gradient(to right, #ffffff, #7aa2f7);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      margin-bottom: 1.2rem;
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      margin-bottom: 1rem;
     }
-
-    .hero-text .badge {
+    .badge-urgente {
       display: inline-block;
-      background: rgba(0, 200, 255, 0.15);
+      background: rgba(239, 68, 68, 0.12);
       backdrop-filter: blur(4px);
-      padding: 0.3rem 1rem;
+      padding: 0.4rem 1rem;
       border-radius: 40px;
       font-size: 0.8rem;
-      font-weight: 600;
-      color: #6ee7ff;
+      font-weight: 700;
+      color: #fca5a5;
       margin-bottom: 1rem;
-      border: 1px solid rgba(0, 255, 255, 0.4);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      animation: pulse-urgente 2s ease-in-out infinite;
     }
+    @keyframes pulse-urgente {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.2); }
+      50% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+    }
+    .hero-text p { font-size: 1.15rem; color: #b9c7e0; margin-bottom: 1.5rem; }
 
-    .hero-text p {
-      font-size: 1.2rem;
-      color: #b9c7e0;
-      margin-bottom: 2rem;
+    /* Precio prominente */
+    .precio-hero {
+      display: flex; align-items: center; gap: 1.2rem;
+      flex-wrap: wrap; margin: 1.5rem 0;
+    }
+    .precio-monto {
+      font-size: 3rem; font-weight: 800; color: #2dd4bf;
+      text-shadow: 0 0 20px rgba(45, 212, 191, 0.3);
+    }
+    .precio-info {
+      color: #b9c7e0; font-size: 0.9rem;
+    }
+    .precio-info strong { color: #2dd4bf; }
+    .badge-reembolso {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(45, 212, 191, 0.1);
+      color: #2dd4bf; padding: 0.35rem 0.9rem;
+      border-radius: 20px; font-size: 0.75rem;
+      font-weight: 600; border: 1px solid rgba(45, 212, 191, 0.25);
     }
 
     .btn-whatsapp {
       background: linear-gradient(95deg, #25D366, #128C7E);
-      border: none;
-      color: white;
-      padding: 1rem 2rem;
-      font-size: 1.1rem;
-      font-weight: 700;
-      border-radius: 60px;
-      cursor: pointer;
-      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+      border: none; color: white; padding: 1rem 2rem;
+      font-size: 1.1rem; font-weight: 700; border-radius: 60px;
+      cursor: pointer; box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
       transition: transform 0.2s, box-shadow 0.2s;
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
+      display: inline-flex; align-items: center; gap: 12px;
       text-decoration: none;
     }
-
     .btn-whatsapp:hover {
       transform: scale(1.02);
       box-shadow: 0 15px 30px rgba(37, 211, 102, 0.5);
     }
-
-    .hero-image {
-      flex: 1;
-      text-align: center;
-    }
-
+    .hero-image { flex: 1; text-align: center; }
     .hero-image i {
-      font-size: 12rem;
+      font-size: 10rem;
       filter: drop-shadow(0 0 20px rgba(0, 200, 255, 0.5));
-      color: #2dd4bf;
-      opacity: 0.9;
+      color: #2dd4bf; opacity: 0.9;
     }
 
+<<<<<<< HEAD
+    /* Section titles */
+=======
+>>>>>>> 28eb7e496bc0c8572b70289fe190b9b7379156aa
     .section-title {
-      text-align: center;
-      font-size: 2.3rem;
-      font-weight: 700;
+      text-align: center; font-size: 2.2rem; font-weight: 700;
       margin: 3rem 0 2rem;
       background: linear-gradient(135deg, #e0e7ff, #a5b4fc);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      -webkit-background-clip: text; background-clip: text; color: transparent;
     }
 
+    /* Cards */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin: 2rem 0 3rem;
+      gap: 2rem; margin: 2rem 0 3rem;
     }
-
     .card {
       background: rgba(15, 25, 45, 0.6);
       backdrop-filter: blur(10px);
-      border-radius: 2rem;
-      padding: 1.8rem;
+      border-radius: 2rem; padding: 1.8rem;
       border: 1px solid rgba(0, 180, 255, 0.2);
       transition: all 0.3s ease;
     }
-
     .card:hover {
       border-color: rgba(0, 255, 255, 0.6);
       transform: translateY(-5px);
       box-shadow: 0 20px 35px -15px rgba(0, 200, 255, 0.2);
     }
+    .card i { font-size: 2.5rem; color: #2dd4bf; margin-bottom: 1rem; }
+    .card h3 { font-size: 1.4rem; margin-bottom: 0.8rem; }
+    .card p { color: #b9c7e0; font-size: 0.95rem; }
 
-    .card i {
-      font-size: 2.5rem;
-      color: #2dd4bf;
-      margin-bottom: 1rem;
+    /* Comparativa precios */
+    .comparativa-section {
+      background: rgba(0, 10, 25, 0.7);
+      border-radius: 2rem; padding: 2.5rem 2rem;
+      margin: 3rem 0; border: 1px solid rgba(239, 68, 68, 0.15);
     }
-
-    .card h3 {
-      font-size: 1.5rem;
-      margin-bottom: 0.8rem;
+    .comparativa-section h3 {
+      font-size: 1.6rem; text-align: center; margin-bottom: 2rem;
+      color: #fca5a5;
     }
-
-    .card p {
-      color: #b9c7e0;
+    .comparativa-grid {
+      display: flex; justify-content: center; align-items: center;
+      gap: 2rem; flex-wrap: wrap;
     }
-
-    .steps {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 1.5rem;
-      margin: 3rem 0;
+    .competidor {
+      text-align: center; opacity: 0.5;
+      padding: 1rem; border-radius: 1rem;
     }
-
-    .step {
-      flex: 1;
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 1.5rem;
-      padding: 1.5rem;
+    .competidor .precio-tachado {
+      font-size: 1.5rem; text-decoration: line-through; color: #ef4444; font-weight: 700;
+    }
+    .competidor .nombre { font-size: 0.85rem; color: #b9c7e0; margin-top: 0.3rem; }
+    .flecha-precio { font-size: 2rem; color: #2dd4bf; font-weight: 800; }
+    .precio-multasscan {
       text-align: center;
-      border-left: 3px solid #2dd4bf;
+      background: rgba(45, 212, 191, 0.08);
+      padding: 1.2rem 2rem; border-radius: 1.2rem;
+      border: 2px solid #2dd4bf;
     }
+    .precio-multasscan .precio-grande {
+      font-size: 2.5rem; font-weight: 800; color: #2dd4bf;
+    }
+    .precio-multasscan .precio-label {
+      font-size: 0.9rem; color: #2dd4bf; font-weight: 600;
+    }
+    .comparativa-footer {
+      text-align: center; color: #b9c7e0;
+      margin-top: 1.5rem; font-size: 0.95rem;
+    }
+    .comparativa-footer strong { color: #fca5a5; }
 
+<<<<<<< HEAD
+    /* Steps */
+=======
+>>>>>>> 28eb7e496bc0c8572b70289fe190b9b7379156aa
+    .steps {
+      display: flex; flex-wrap: wrap;
+      justify-content: space-between; gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .step {
+      flex: 1; background: rgba(0, 0, 0, 0.3);
+      border-radius: 1.5rem; padding: 1.5rem;
+      text-align: center; border-left: 3px solid #2dd4bf;
+      min-width: 200px;
+    }
     .step-number {
-      width: 40px;
-      height: 40px;
-      background: #2dd4bf;
-      color: #030617;
-      font-weight: bold;
-      border-radius: 60px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+      width: 40px; height: 40px; background: #2dd4bf;
+      color: #030617; font-weight: bold; border-radius: 60px;
+      display: inline-flex; align-items: center; justify-content: center;
       margin-bottom: 1rem;
     }
+    .step strong { display: block; margin-bottom: 0.3rem; }
+    .step .step-time {
+      font-size: 0.75rem; color: #6b7c9e; margin-top: 0.4rem;
+    }
 
+<<<<<<< HEAD
+    /* Testimonios estaticos */
+    .testimonios-section {
+      margin: 3rem 0;
+=======
     footer {
       margin-top: 5rem;
       padding: 2rem 0;
       border-top: 1px solid rgba(0, 255, 255, 0.2);
+>>>>>>> 28eb7e496bc0c8572b70289fe190b9b7379156aa
       text-align: center;
-      font-size: 0.85rem;
-      color: #7e8cb0;
+    }
+    .testimonio-card {
+      background: rgba(15, 25, 45, 0.5);
+      backdrop-filter: blur(8px);
+      border-radius: 1.5rem; padding: 1.5rem;
+      border: 1px solid rgba(0, 180, 255, 0.1);
+      margin: 1rem auto; max-width: 600px;
+      text-align: left;
+    }
+    .testimonio-card p { color: #cbd5f0; font-style: italic; font-size: 1rem; line-height: 1.6; }
+    .testimonio-card .autor {
+      color: #2dd4bf; font-weight: 600; margin-top: 0.8rem;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .testimonio-card .autor .estrellas { color: #fbbf24; font-size: 0.8rem; }
+
+    /* FAQ */
+    .faq-section { margin: 3rem 0; }
+    details {
+      background: rgba(15, 25, 45, 0.4);
+      border-radius: 1rem; padding: 1rem 1.2rem;
+      margin: 0.6rem 0;
+      border: 1px solid rgba(0, 180, 255, 0.1);
+      transition: all 0.2s;
+    }
+    details:hover { border-color: rgba(0, 255, 255, 0.2); }
+    summary {
+      color: #eef2ff; font-weight: 600; cursor: pointer;
+      list-style: none; display: flex; align-items: center; gap: 10px;
+    }
+    summary::before {
+      content: "+"; color: #2dd4bf; font-size: 1.2rem; font-weight: 700;
+      transition: transform 0.2s;
+    }
+    details[open] summary::before { content: "−"; }
+    details p {
+      color: #b9c7e0; margin-top: 0.8rem; font-size: 0.9rem; line-height: 1.6;
+      padding-left: 1.5rem;
     }
 
-    footer a {
-      color: #8fcbff;
-      text-decoration: none;
+    /* Footer */
+    footer {
+      margin-top: 4rem; padding: 2rem 0;
+      border-top: 1px solid rgba(0, 255, 255, 0.2);
+      text-align: center; font-size: 0.85rem; color: #7e8cb0;
     }
+    footer a { color: #8fcbff; text-decoration: none; }
 
     @media (max-width: 768px) {
-      .hero-text h1 { font-size: 2.2rem; }
+      .hero-text h1 { font-size: 2rem; }
       .navbar { flex-direction: column; gap: 1rem; }
-      .nav-links a { margin: 0 1rem; }
+      .nav-links a { margin: 0 0.8rem; font-size: 0.85rem; }
       .container { padding: 0 1.2rem; }
-      .hero-image i { font-size: 7rem; }
+      .hero-image i { font-size: 6rem; }
+      .precio-monto { font-size: 2.2rem; }
+      .comparativa-grid { gap: 1rem; }
+      .flecha-precio { display: none; }
+      .step { min-width: 100%; }
     }
   </style>
+
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -292,11 +398,7 @@
     "@type": "Organization",
     "name": "Ingenio Natural Spa",
     "legalName": "Ingenio Natural Spa",
-    "url": "https://multasscan.github.io/",
-    "sameAs": [
-      "https://www.instagram.com/tu_cuenta_aqui",
-      "https://www.facebook.com/tu_pagina_aqui"
-    ]
+    "url": "https://multasscan.github.io/"
   },
   "potentialAction": {
     "@type": "CommunicateAction",
@@ -304,7 +406,8 @@
     "target": "https://wa.me/56935692418?text=Hola%2C%20quiero%20consultar%20el%20estado%20de%20multas%20para%20mi%20patente"
   }
 }
-</script>
+  </script>
+<base target="_blank">
 </head>
 <body>
 <div class="bg-animation"></div>
@@ -314,78 +417,216 @@
     <div class="logo">MULTASSCAN<span> .ai</span></div>
     <div class="nav-links">
       <a href="#inicio">Inicio</a>
+<<<<<<< HEAD
+      <a href="#como-funciona">Como funciona</a>
+      <a href="politica.html">Politica de Datos</a>
+=======
       <a href="#como-funciona">¿Cómo funciona?</a>
       <a href="politica.html">Política de Datos</a>
+>>>>>>> 28eb7e496bc0c8572b70289fe190b9b7379156aa
       <a href="help.html">Ayuda</a>
       <a href="gracias.html">Pago Exitoso</a>
+<<<<<<< HEAD
+      <a href="testimonios.html">Testimonios</a>
+=======
       <!-- ✅ AGREGADO: enlace a testimonios -->
       <a href="testimonios.html">⭐ Testimonios</a>
+>>>>>>> 28eb7e496bc0c8572b70289fe190b9b7379156aa
     </div>
   </nav>
 
   <section id="inicio" class="hero">
     <div class="hero-text">
-      <div class="badge"><i class="fas fa-bolt"></i> AGENTE IA EN TIEMPO REAL</div>
-      <h1>Descubre si tu vehículo tiene multas<br>en <span style="color:#2dd4bf">Chile</span> en minutos</h1>
-      <p>Consulta por WhatsApp. Pagas solo si decides ver el informe. Integración con Registro de Multas SRCEI (REGISTRO CIVIL) y Fiscalización de Cámaras (RRVV). Resultados oficiales en minutos.</p>
-      <a href="https://wa.me/56935692418?text=Hola%2C%20quiero%20consultar%20el%20estado%20de%20multas%20para%20mi%20patente" class="btn-whatsapp" target="_blank">
+      <div class="badge-urgente">
+        <i class="fas fa-fire"></i> AGOSTO 2026: Temporada de Permiso de Circulacion en Cuotas
+      </div>
+      <h1>Descubre si tu vehiculo tiene multas<br>en <span style="color:#2dd4bf">Chile</span> en minutos</h1>
+      <p>Consulta por WhatsApp. Pagas solo si decides ver el informe. Integracion con Registro de Multas SRCeI (REGISTRO CIVIL) y Fiscalizacion de Camaras (RRVV). Resultados oficiales en minutos.</p>
+
+      <!-- Precio prominente -->
+      <div class="precio-hero">
+        <div class="precio-monto">$998</div>
+        <div class="precio-info">
+          pesos chilenos<br>
+          <strong>pago unico</strong> · resultado en 2 min
+        </div>
+        <div class="badge-reembolso">
+          <i class="fas fa-shield-alt"></i> Reembolso si falla
+        </div>
+      </div>
+
+      <a href="https://wa.me/56935692418?text=Hola%2C%20quiero%20consultar%20el%20estado%20de%20multas%20para%20mi%20patente"
+         class="btn-whatsapp" target="_blank"
+         onclick="trackWhatsAppClick('hero_button')">
         <i class="fab fa-whatsapp"></i> Consultar ahora por WhatsApp
       </a>
-      <p style="margin-top: 1rem; font-size: 0.85rem;">*Consulta, rapido, fácil.</p>
+      <p style="margin-top: 1rem; font-size: 0.85rem;">*Consulta rapida y facil. Menos que un cafe americano.</p>
     </div>
     <div class="hero-image">
       <i class="fas fa-car-side"></i>
     </div>
   </section>
 
-  <h2 class="section-title" id="como-funciona">⚡ Tecnología de punta para tu tranquilidad</h2>
+  <!-- Comparativa de precios -->
+  <section class="comparativa-section">
+    <h3><i class="fas fa-tags"></i> Por que pagar mas por lo mismo?</h3>
+    <div class="comparativa-grid">
+      <div class="competidor">
+        <div class="precio-tachado">$1.430</div>
+        <div class="nombre">Registro Civil</div>
+      </div>
+      <div class="competidor">
+        <div class="precio-tachado">$9.990</div>
+        <div class="nombre">Autofact</div>
+      </div>
+      <div class="flecha-precio">&rarr;</div>
+      <div class="precio-multasscan">
+        <div class="precio-grande">$998</div>
+        <div class="precio-label">Multasscan</div>
+      </div>
+    </div>
+    <p class="comparativa-footer">
+      Menos que un <strong>cafe americano ($2.500)</strong>. Mas barato que un <strong>kg de azucar ($1.400)</strong>.<br>
+      El chileno paga nomas cuando la confianza esta construida.
+    </p>
+  </section>
+
+  <h2 class="section-title" id="como-funciona">Tecnologia de punta para tu tranquilidad</h2>
   <div class="cards-grid">
     <div class="card">
       <i class="fas fa-robot"></i>
       <h3>IA Conversacional</h3>
-      <p>Agente inteligente que guía al usuario, reconoce patentes y gestiona pagos seguros.</p>
+      <p>Agente inteligente que guia al usuario, reconoce patentes y gestiona pagos seguros.</p>
     </div>
     <div class="card">
-      <i class="fas fa-chart-line"></i>
       <i class="fas fa-database"></i>
       <h3>Fuentes oficiales</h3>
-      <p>Consultas en minutos al SRCEI (Registro Civil) y sistema de cámaras de fiscalización de transportes (RRVV).</p>
+      <p>Consultas en minutos al SRCeI (Registro Civil) y sistema de camaras de fiscalizacion de transportes (RRVV).</p>
     </div>
     <div class="card">
       <i class="fas fa-lock"></i>
       <h3>Pago seguro + privacidad</h3>
-      <p>Link de pago por transacción. No almacenamos patentes después de la consulta, cumpliendo Ley 19.628.</p>
+      <p>Link de pago por transaccion. No almacenamos patentes despues de la consulta, cumpliendo Ley 19.628.</p>
     </div>
   </div>
 
+  <!-- Flujo simple -->
   <div style="background: rgba(0, 10, 25, 0.7); border-radius: 2rem; padding: 2rem; margin: 2rem 0;">
-    <h3 style="font-size: 1.8rem; text-align: center; margin-bottom: 1rem;">✅ Flujo simple y confiable</h3>
+    <h3 style="font-size: 1.8rem; text-align: center; margin-bottom: 1.5rem;">Flujo simple y confiable</h3>
     <div class="steps">
-      <div class="step"><div class="step-number">1</div> <strong>Envías tu patente</strong> por WhatsApp al agente Multasscan.</div>
-      <div class="step"><div class="step-number">2</div> <strong>Recibes un enlace de pago</strong> (único, no recurrente).</div>
-      <div class="step"><div class="step-number">3</div> <strong>Pagas con tarjeta / Webpay</strong> y el sistema consulta automáticamente en bases oficiales.</div>
-      <div class="step"><div class="step-number">4</div> <strong>Resultado detallado</strong> con todas las multa y estado (pagadas/vigentes).</div>
+      <div class="step">
+        <div class="step-number">1</div>
+        <strong>Enviás tu patente</strong> por WhatsApp al agente Multasscan.
+        <div class="step-time">10 segundos</div>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <strong>Recibís un enlace de pago</strong> unico, no recurrente.
+        <div class="step-time">MercadoPago</div>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <strong>Pagás con tarjeta / Webpay</strong> y el sistema consulta automaticamente.
+        <div class="step-time">Pago unico, seguro</div>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <strong>Resultado detallado</strong> con todas las multas y estado (pagadas/vigentes).
+        <div class="step-time">SRCeI + Camaras MTT</div>
+      </div>
     </div>
   </div>
 
+  <!-- Testimonios estaticos -->
+  <section class="testimonios-section">
+    <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+    <div class="testimonio-card">
+      <p>"Pague $998 y en 2 minutos supe que mi auto no tenia multas. Me dio tranquilidad antes de ir a la municipalidad."</p>
+      <div class="autor">
+        Juan P., Santiago
+        <span class="estrellas"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+      </div>
+    </div>
+    <div class="testimonio-card">
+      <p>"Compre un auto usado y antes de firmar le mande la patente a Multasscan. Descubri 2 multas del dueno anterior y negocie el precio."</p>
+      <div class="autor">
+        Maria G., Valparaiso
+        <span class="estrellas"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+      </div>
+    </div>
+    <div class="testimonio-card">
+      <p>"Mi auto tenia una multa de 2019 que ni sabia. Multasscan me aviso a tiempo y pude pagarla con descuento. Un salvavidas."</p>
+      <div class="autor">
+        Camila R., La Serena
+        <span class="estrellas"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+      </div>
+    </div>
+    <p style="margin-top: 1rem;">
+      <a href="testimonios.html" style="color: #2dd4bf; text-decoration: none; font-weight: 600;">
+        <i class="fas fa-arrow-right"></i> Ver todos los testimonios
+      </a>
+    </p>
+  </section>
+
+  <!-- FAQ Colapsable -->
+  <section class="faq-section">
+    <h2 class="section-title">Preguntas frecuentes</h2>
+    <details>
+      <summary>Que pasa si no tengo multas?</summary>
+      <p>Tambien te informamos. El pago de $998 cubre la consulta, no el resultado. Saber que no tienes multas tambien tiene valor, especialmente antes de pagar el permiso de circulacion o transferir un auto usado.</p>
+    </details>
+    <details>
+      <summary>Es seguro pagar?</summary>
+      <p>Usamos MercadoPago, la plataforma de pagos mas confiable de Latinoamerica. No almacenamos datos de tu tarjeta ni informacion bancaria. El link de pago es unico por transaccion y no es recurrente.</p>
+    </details>
+    <details>
+      <summary>Y si no pueden consultar mis multas?</summary>
+      <p>Te reembolsamos el 100% del dinero automaticamente en 24-48 horas. Nuestro sistema detecta si ambas fuentes (Registro Civil y Camaras MTT) fallan y ejecuta el reembolso sin que tengas que hacer nada.</p>
+    </details>
+    <details>
+      <summary>Cuanto tarda el resultado?</summary>
+      <p>Menos de 2 minutos despues de confirmado el pago. El informe llega directamente a tu WhatsApp con los datos oficiales del Registro Civil y las camaras de fiscalizacion del Ministerio de Transporte.</p>
+    </details>
+    <details>
+      <summary>Que informacion recibo exactamente?</summary>
+      <p>Recibes un informe con dos fuentes: (1) Multas registradas en el SRCeI (Registro Civil) con juzgado, causa/rol y fecha; y (2) Infracciones captadas por camaras de fiscalizacion del MTT en los ultimos 60 dias. Si no hay multas, tambien se informa explicitamente.</p>
+    </details>
+  </section>
+
+  <!-- CTA Final -->
   <div style="text-align: center; margin: 3rem 0;">
-    <a href="https://wa.me/56935692418?text=Hola%2C%20quiero%20consultar%20el%20estado%20de%20multas%20para%20mi%20patente" class="btn-whatsapp" style="background: linear-gradient(95deg, #1e2a5e, #0f172a); box-shadow: 0 5px 15px rgba(0,160,255,0.3);">
-      <i class="fab fa-whatsapp"></i> Consulta, rapido y fácil
+    <a href="https://wa.me/56935692418?text=Hola%2C%20quiero%20consultar%20el%20estado%20de%20multas%20para%20mi%20patente"
+       class="btn-whatsapp" target="_blank"
+       style="background: linear-gradient(95deg, #1e2a5e, #0f172a); box-shadow: 0 5px 15px rgba(0,160,255,0.3);"
+       onclick="trackWhatsAppClick('footer_button')">
+      <i class="fab fa-whatsapp"></i> Consulta, rapido y facil
     </a>
+    <p style="margin-top: 1rem; color: #6b7c9e; font-size: 0.85rem;">
+      <i class="fas fa-lock"></i> Pago seguro por MercadoPago. Reembolso garantizado.
+    </p>
   </div>
 
   <footer>
-    <p>© 2026 Multasscan — Tecnología legal para conductores chilenos. Servicio de Consulta de Multas Vehiculares de Ingenio Natural Spa</p>
+    <p> 2026 Multasscan — Tecnologia legal para conductores chilenos. Servicio de Consulta de Multas Vehiculares de Ingenio Natural Spa</p>
     <p>
+<<<<<<< HEAD
+      <a href="politica.html">Politica de Uso de Datos Personales</a> |
+      <a href="help.html">Centro de Ayuda</a> |
+      <a href="gracias.html">Pago Exitoso</a> |
+      <a href="testimonios.html">Testimonios</a> |
+      <a href="mailto:multasscan@gmail.com">Contacto</a>
+=======
       <a href="politica.html">📄 Política de Uso de Datos Personales</a> |
       <a href="help.html">❓ Centro de Ayuda</a> |
       <a href="gracias.html">✅ Pago Exitoso</a> |
       <!-- ✅ AGREGADO: enlace a testimonios en el footer -->
       <a href="testimonios.html">⭐ Testimonios</a> |
       <a href="mailto:multasscan@gmail.com">📧 Contacto</a>
+>>>>>>> 28eb7e496bc0c8572b70289fe190b9b7379156aa
     </p>
-    <p style="margin-top: 0.5rem;">SRCEI y RRVV son marcas de sus respectivos dueños. Multasscan actúa como intermediario.</p>
+    <p style="margin-top: 0.5rem;">SRCeI y RRVV son marcas de sus respectivos duenos. Multasscan actua como intermediario.</p>
   </footer>
 </div>
+
 </body>
 </html>
