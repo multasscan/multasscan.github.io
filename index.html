@@ -19,7 +19,6 @@
     gtag('js', new Date());
     gtag('config', 'G-1ERDMD3XM7');
 
-    // Evento: Click en boton WhatsApp
     function trackWhatsAppClick(location) {
       gtag('event', 'whatsapp_click', {
         'event_category': 'engagement',
@@ -29,7 +28,6 @@
       });
     }
 
-    // Evento: Scroll depth 75%
     let scrollTracked = false;
     window.addEventListener('scroll', function() {
       if (scrollTracked) return;
@@ -44,7 +42,6 @@
       }
     });
 
-    // Capturar UTM parameters
     (function captureUTM() {
       const params = new URLSearchParams(window.location.search);
       const utmData = {};
@@ -87,16 +84,6 @@
     html { scroll-behavior: smooth; }
     .container { max-width: 1300px; margin: 0 auto; padding: 0 2rem; }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
-    .container {
-      max-width: 1300px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
     .navbar {
       display: flex; justify-content: space-between; align-items: center;
       padding: 1.5rem 0; flex-wrap: wrap;
@@ -109,24 +96,12 @@
       -webkit-background-clip: text; background-clip: text; color: transparent;
       letter-spacing: -0.02em;
     }
-
-    .logo span {
-      font-weight: 400;
-      font-size: 1rem;
-      background: none;
-      color: #8ca3cf;
-    }
-
+    .logo span { font-weight: 400; font-size: 1rem; background: none; color: #8ca3cf; }
     .nav-links a {
       color: #cbd5e6; text-decoration: none; margin-left: 2rem;
       transition: 0.2s; font-weight: 500; border-bottom: 1px solid transparent;
     }
     .nav-links a:hover { color: #00e0ff; border-bottom-color: #00e0ff; }
-
-    .nav-links a:hover {
-      color: #00e0ff;
-      border-bottom-color: #00e0ff;
-    }
 
     .hero {
       display: flex; flex-wrap: wrap; align-items: center;
@@ -137,28 +112,45 @@
       font-size: 3.2rem; font-weight: 800; line-height: 1.15;
       background: linear-gradient(to right, #ffffff, #7aa2f7);
       -webkit-background-clip: text; background-clip: text; color: transparent;
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
     }
+
+    /* ===== BADGES ===== */
     .badge-urgente {
       display: inline-block;
-      background: rgba(239, 68, 68, 0.12);
+      background: rgba(239, 68, 68, 0.15);
       backdrop-filter: blur(4px);
-      padding: 0.4rem 1rem;
-      border-radius: 40px;
-      font-size: 0.8rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 60px;
+      font-size: 1.1rem;
       font-weight: 700;
       color: #fca5a5;
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
       border: 1px solid rgba(239, 68, 68, 0.35);
       animation: pulse-urgente 2s ease-in-out infinite;
+      letter-spacing: 0.5px;
     }
+    .badge-urgente i { margin-right: 8px; }
     @keyframes pulse-urgente {
       0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.2); }
-      50% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+      50% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
     }
+
+    .badge-ia {
+      display: inline-block;
+      background: rgba(0, 200, 255, 0.10);
+      backdrop-filter: blur(4px);
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #6ee7ff;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(0, 255, 255, 0.25);
+    }
+
     .hero-text p { font-size: 1.15rem; color: #b9c7e0; margin-bottom: 1.5rem; }
 
-    /* Precio prominente */
     .precio-hero {
       display: flex; align-items: center; gap: 1.2rem;
       flex-wrap: wrap; margin: 1.5rem 0;
@@ -206,7 +198,6 @@
       -webkit-background-clip: text; background-clip: text; color: transparent;
     }
 
-    /* Cards */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -228,7 +219,6 @@
     .card h3 { font-size: 1.4rem; margin-bottom: 0.8rem; }
     .card p { color: #b9c7e0; font-size: 0.95rem; }
 
-    /* Comparativa precios */
     .comparativa-section {
       background: rgba(0, 10, 25, 0.7);
       border-radius: 2rem; padding: 2.5rem 2rem;
@@ -291,26 +281,55 @@
       font-size: 0.75rem; color: #6b7c9e; margin-top: 0.4rem;
     }
 
-    footer {
-      margin-top: 5rem;
-      padding: 2rem 0;
-      border-top: 1px solid rgba(0, 255, 255, 0.2);
-      text-align: center;
+    /* ===== TESTIMONIOS EN GRID ===== */
+    .testimonios-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin: 2rem 0;
     }
+
+    @media (max-width: 768px) {
+      .testimonios-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .testimonio-card {
       background: rgba(15, 25, 45, 0.5);
       backdrop-filter: blur(8px);
-      border-radius: 1.5rem; padding: 1.5rem;
+      border-radius: 1.5rem;
+      padding: 1.5rem;
       border: 1px solid rgba(0, 180, 255, 0.1);
-      margin: 1rem auto; max-width: 600px;
-      text-align: left;
+      transition: all 0.3s ease;
     }
-    .testimonio-card p { color: #cbd5f0; font-style: italic; font-size: 1rem; line-height: 1.6; }
+
+    .testimonio-card:hover {
+      border-color: rgba(0, 255, 255, 0.3);
+      transform: translateY(-3px);
+    }
+
+    .testimonio-card p {
+      color: #cbd5f0;
+      font-style: italic;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
     .testimonio-card .autor {
-      color: #2dd4bf; font-weight: 600; margin-top: 0.8rem;
-      display: flex; align-items: center; gap: 8px;
+      color: #2dd4bf;
+      font-weight: 600;
+      margin-top: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
     }
-    .testimonio-card .autor .estrellas { color: #fbbf24; font-size: 0.8rem; }
+
+    .testimonio-card .autor .estrellas {
+      color: #fbbf24;
+      font-size: 0.8rem;
+    }
 
     /* FAQ */
     .faq-section { margin: 3rem 0; }
@@ -336,7 +355,6 @@
       padding-left: 1.5rem;
     }
 
-    /* Footer */
     footer {
       margin-top: 4rem; padding: 2rem 0;
       border-top: 1px solid rgba(0, 255, 255, 0.2);
@@ -354,6 +372,7 @@
       .comparativa-grid { gap: 1rem; }
       .flecha-precio { display: none; }
       .step { min-width: 100%; }
+      .badge-urgente { font-size: 0.9rem; padding: 0.4rem 0.9rem; }
     }
   </style>
 
@@ -391,25 +410,32 @@
       <a href="politica.html">Política de Datos</a>
       <a href="help.html">Ayuda</a>
       <a href="gracias.html">Pago Exitoso</a>
-      <!-- ✅ AGREGADO: enlace a testimonios -->
       <a href="testimonios.html">⭐ Testimonios</a>
     </div>
   </nav>
 
   <section id="inicio" class="hero">
     <div class="hero-text">
+      <!-- Badge de urgencia (más grande) -->
       <div class="badge-urgente">
-        <i class="fas fa-fire"></i> AGOSTO 2026: Temporada de Permiso de Circulacion en Cuotas
+        <i class="fas fa-fire"></i> AGOSTO 2026 · Temporada de Permiso de Circulación en Cuotas
       </div>
-      <h1>Descubre si tu vehiculo tiene multas<br>en <span style="color:#2dd4bf">Chile</span> en minutos</h1>
-      <p>Consulta por WhatsApp. Pagas solo si decides ver el informe. Integracion con Registro de Multas SRCeI (REGISTRO CIVIL) y Fiscalizacion de Camaras (RRVV). Resultados oficiales en minutos.</p>
 
-      <!-- Precio prominente -->
+      <h1>Descubre si tu vehículo tiene multas<br>en <span style="color:#2dd4bf">Chile</span> en minutos</h1>
+
+      <!-- Badge "AGENTE IA EN TIEMPO REAL" recuperado -->
+      <div class="badge-ia">
+        <i class="fas fa-bolt"></i> AGENTE IA EN TIEMPO REAL
+      </div>
+
+      <p>Consulta por WhatsApp. Pagas solo si decides ver el informe. Integración con Registro de Multas SRCEI (REGISTRO CIVIL) y Fiscalización de Cámaras (RRVV). Resultados oficiales en minutos.</p>
+
+      <!-- Precio prominente con tiempo corregido a 5 min -->
       <div class="precio-hero">
         <div class="precio-monto">$998</div>
         <div class="precio-info">
           pesos chilenos<br>
-          <strong>pago unico</strong> · resultado en 2 min
+          <strong>pago único</strong> · resultado en <strong>5 min</strong>
         </div>
         <div class="badge-reembolso">
           <i class="fas fa-shield-alt"></i> Reembolso si falla
@@ -421,7 +447,7 @@
          onclick="trackWhatsAppClick('hero_button')">
         <i class="fab fa-whatsapp"></i> Consultar ahora por WhatsApp
       </a>
-      <p style="margin-top: 1rem; font-size: 0.85rem;">*Consulta rapida y facil. Menos que un cafe americano.</p>
+      <p style="margin-top: 1rem; font-size: 0.85rem;">*Consulta rápida y fácil. Menos que un café americano.</p>
     </div>
     <div class="hero-image">
       <i class="fas fa-car-side"></i>
@@ -430,7 +456,7 @@
 
   <!-- Comparativa de precios -->
   <section class="comparativa-section">
-    <h3><i class="fas fa-tags"></i> Por que pagar mas por lo mismo?</h3>
+    <h3><i class="fas fa-tags"></i> ¿Por qué pagar más por lo mismo?</h3>
     <div class="comparativa-grid">
       <div class="competidor">
         <div class="precio-tachado">$1.430</div>
@@ -447,110 +473,119 @@
       </div>
     </div>
     <p class="comparativa-footer">
-      Menos que un <strong>cafe americano ($2.500)</strong>. Mas barato que un <strong>kg de azucar ($1.400)</strong>.<br>
-      El chileno paga nomas cuando la confianza esta construida.
+      Menos que un <strong>café americano ($2.500)</strong>. Más barato que un <strong>kg de azúcar ($1.400)</strong>.<br>
+      El chileno paga nomás cuando la confianza está construida.
     </p>
   </section>
 
-  <h2 class="section-title" id="como-funciona">Tecnologia de punta para tu tranquilidad</h2>
+  <h2 class="section-title" id="como-funciona">⚡ Tecnología de punta para tu tranquilidad</h2>
   <div class="cards-grid">
     <div class="card">
       <i class="fas fa-robot"></i>
       <h3>IA Conversacional</h3>
-      <p>Agente inteligente que guia al usuario, reconoce patentes y gestiona pagos seguros.</p>
+      <p>Agente inteligente que guía al usuario, reconoce patentes y gestiona pagos seguros.</p>
     </div>
     <div class="card">
       <i class="fas fa-database"></i>
       <h3>Fuentes oficiales</h3>
-      <p>Consultas en minutos al SRCeI (Registro Civil) y sistema de camaras de fiscalizacion de transportes (RRVV).</p>
+      <p>Consultas en minutos al SRCEI (Registro Civil) y sistema de cámaras de fiscalización de transportes (RRVV).</p>
     </div>
     <div class="card">
       <i class="fas fa-lock"></i>
       <h3>Pago seguro + privacidad</h3>
-      <p>Link de pago por transaccion. No almacenamos patentes despues de la consulta, cumpliendo Ley 19.628.</p>
+      <p>Link de pago por transacción. No almacenamos patentes después de la consulta, cumpliendo Ley 19.628.</p>
     </div>
   </div>
 
-  <!-- Flujo simple -->
+  <!-- Flujo simple con tiempos corregidos -->
   <div style="background: rgba(0, 10, 25, 0.7); border-radius: 2rem; padding: 2rem; margin: 2rem 0;">
-    <h3 style="font-size: 1.8rem; text-align: center; margin-bottom: 1.5rem;">Flujo simple y confiable</h3>
+    <h3 style="font-size: 1.8rem; text-align: center; margin-bottom: 1.5rem;">✅ Flujo simple y confiable</h3>
     <div class="steps">
       <div class="step">
         <div class="step-number">1</div>
-        <strong>Enviás tu patente</strong> por WhatsApp al agente Multasscan.
+        <strong>Envías tu patente</strong> por WhatsApp al agente Multasscan.
         <div class="step-time">10 segundos</div>
       </div>
       <div class="step">
         <div class="step-number">2</div>
-        <strong>Recibís un enlace de pago</strong> unico, no recurrente.
+        <strong>Recibes un enlace de pago</strong> único, no recurrente.
         <div class="step-time">MercadoPago</div>
       </div>
       <div class="step">
         <div class="step-number">3</div>
-        <strong>Pagás con tarjeta / Webpay</strong> y el sistema consulta automaticamente.
-        <div class="step-time">Pago unico, seguro</div>
+        <strong>Pagas con tarjeta / Webpay</strong> y el sistema consulta automáticamente.
+        <div class="step-time">Pago único, seguro</div>
       </div>
       <div class="step">
         <div class="step-number">4</div>
         <strong>Resultado detallado</strong> con todas las multas y estado (pagadas/vigentes).
-        <div class="step-time">SRCeI + Camaras MTT</div>
+        <div class="step-time">Hasta 5 minutos</div>
       </div>
     </div>
   </div>
 
-  <!-- Testimonios estaticos -->
+  <!-- ===== TESTIMONIOS EN GRID (2 columnas PC / 1 móvil) ===== -->
   <section class="testimonios-section">
-    <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-    <div class="testimonio-card">
-      <p>"Pague $998 y en 2 minutos supe que mi auto no tenia multas. Me dio tranquilidad antes de ir a la municipalidad."</p>
-      <div class="autor">
-        Juan P., Santiago
-        <span class="estrellas"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+    <h2 class="section-title">⭐ Lo que dicen nuestros clientes</h2>
+    <div class="testimonios-grid">
+      <div class="testimonio-card">
+        <p>"Pagué $998 y en 2 minutos supe que mi auto no tenía multas. Me dio tranquilidad antes de ir a la municipalidad."</p>
+        <div class="autor">
+          Juan P., Santiago
+          <span class="estrellas"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+        </div>
+      </div>
+      <div class="testimonio-card">
+        <p>"Compré un auto usado y antes de firmar le mandé la patente a Multasscan. Descubrí 2 multas del dueño anterior y negocié el precio."</p>
+        <div class="autor">
+          María G., Valparaíso
+          <span class="estrellas"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+        </div>
+      </div>
+      <div class="testimonio-card">
+        <p>"Mi auto tenía una multa de 2019 que ni sabía. Multasscan me avisó a tiempo y pude pagarla con descuento. Un salvavidas."</p>
+        <div class="autor">
+          Camila R., La Serena
+          <span class="estrellas"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+        </div>
+      </div>
+      <div class="testimonio-card">
+        <p>"Súper rápido y confiable. El link de pago me dio confianza para pagar sin miedo. Recomendado 100%."</p>
+        <div class="autor">
+          Pedro S., Concepción
+          <span class="estrellas"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+        </div>
       </div>
     </div>
-    <div class="testimonio-card">
-      <p>"Compre un auto usado y antes de firmar le mande la patente a Multasscan. Descubri 2 multas del dueno anterior y negocie el precio."</p>
-      <div class="autor">
-        Maria G., Valparaiso
-        <span class="estrellas"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-      </div>
-    </div>
-    <div class="testimonio-card">
-      <p>"Mi auto tenia una multa de 2019 que ni sabia. Multasscan me aviso a tiempo y pude pagarla con descuento. Un salvavidas."</p>
-      <div class="autor">
-        Camila R., La Serena
-        <span class="estrellas"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-      </div>
-    </div>
-    <p style="margin-top: 1rem;">
+    <p style="margin-top: 1.5rem; text-align: center;">
       <a href="testimonios.html" style="color: #2dd4bf; text-decoration: none; font-weight: 600;">
         <i class="fas fa-arrow-right"></i> Ver todos los testimonios
       </a>
     </p>
   </section>
 
-  <!-- FAQ Colapsable -->
+  <!-- FAQ Colapsable con tiempo corregido -->
   <section class="faq-section">
-    <h2 class="section-title">Preguntas frecuentes</h2>
+    <h2 class="section-title">❓ Preguntas frecuentes</h2>
     <details>
-      <summary>Que pasa si no tengo multas?</summary>
-      <p>Tambien te informamos. El pago de $998 cubre la consulta, no el resultado. Saber que no tienes multas tambien tiene valor, especialmente antes de pagar el permiso de circulacion o transferir un auto usado.</p>
+      <summary>¿Qué pasa si no tengo multas?</summary>
+      <p>También te informamos. El pago de $998 cubre la consulta, no el resultado. Saber que no tienes multas también tiene valor, especialmente antes de pagar el permiso de circulación o transferir un auto usado.</p>
     </details>
     <details>
-      <summary>Es seguro pagar?</summary>
-      <p>Usamos MercadoPago, la plataforma de pagos mas confiable de Latinoamerica. No almacenamos datos de tu tarjeta ni informacion bancaria. El link de pago es unico por transaccion y no es recurrente.</p>
+      <summary>¿Es seguro pagar?</summary>
+      <p>Usamos MercadoPago, la plataforma de pagos más confiable de Latinoamérica. No almacenamos datos de tu tarjeta ni información bancaria. El link de pago es único por transacción y no es recurrente.</p>
     </details>
     <details>
-      <summary>Y si no pueden consultar mis multas?</summary>
-      <p>Te reembolsamos el 100% del dinero automaticamente en 24-48 horas. Nuestro sistema detecta si ambas fuentes (Registro Civil y Camaras MTT) fallan y ejecuta el reembolso sin que tengas que hacer nada.</p>
+      <summary>¿Y si no pueden consultar mis multas?</summary>
+      <p>Te reembolsamos el 100% del dinero automáticamente en 24-48 horas. Nuestro sistema detecta si ambas fuentes (Registro Civil y Cámaras MTT) fallan y ejecuta el reembolso sin que tengas que hacer nada.</p>
     </details>
     <details>
-      <summary>Cuanto tarda el resultado?</summary>
-      <p>Menos de 2 minutos despues de confirmado el pago. El informe llega directamente a tu WhatsApp con los datos oficiales del Registro Civil y las camaras de fiscalizacion del Ministerio de Transporte.</p>
+      <summary>¿Cuánto tarda el resultado?</summary>
+      <p><strong>Hasta 5 minutos</strong> después de confirmado el pago. El informe llega directamente a tu WhatsApp con los datos oficiales del Registro Civil y las cámaras de fiscalización del Ministerio de Transporte.</p>
     </details>
     <details>
-      <summary>Que informacion recibo exactamente?</summary>
-      <p>Recibes un informe con dos fuentes: (1) Multas registradas en el SRCeI (Registro Civil) con juzgado, causa/rol y fecha; y (2) Infracciones captadas por camaras de fiscalizacion del MTT en los ultimos 60 dias. Si no hay multas, tambien se informa explicitamente.</p>
+      <summary>¿Qué información recibo exactamente?</summary>
+      <p>Recibes un informe con dos fuentes: (1) Multas registradas en el SRCEI (Registro Civil) con juzgado, causa/rol y fecha; y (2) Infracciones captadas por cámaras de fiscalización del MTT en los últimos 60 días. Si no hay multas, también se informa explícitamente.</p>
     </details>
   </section>
 
@@ -560,7 +595,7 @@
        class="btn-whatsapp" target="_blank"
        style="background: linear-gradient(95deg, #1e2a5e, #0f172a); box-shadow: 0 5px 15px rgba(0,160,255,0.3);"
        onclick="trackWhatsAppClick('footer_button')">
-      <i class="fab fa-whatsapp"></i> Consulta, rapido y facil
+      <i class="fab fa-whatsapp"></i> Consulta, rápido y fácil
     </a>
     <p style="margin-top: 1rem; color: #6b7c9e; font-size: 0.85rem;">
       <i class="fas fa-lock"></i> Pago seguro por MercadoPago. Reembolso garantizado.
@@ -568,16 +603,15 @@
   </div>
 
   <footer>
-    <p> 2026 Multasscan — Tecnologia legal para conductores chilenos. Servicio de Consulta de Multas Vehiculares de Ingenio Natural Spa</p>
+    <p>© 2026 Multasscan — Tecnología legal para conductores chilenos. Servicio de Consulta de Multas Vehiculares de Ingenio Natural Spa</p>
     <p>
       <a href="politica.html">📄 Política de Uso de Datos Personales</a> |
       <a href="help.html">❓ Centro de Ayuda</a> |
       <a href="gracias.html">✅ Pago Exitoso</a> |
-      <!-- ✅ AGREGADO: enlace a testimonios en el footer -->
       <a href="testimonios.html">⭐ Testimonios</a> |
       <a href="mailto:multasscan@gmail.com">📧 Contacto</a>
     </p>
-    <p style="margin-top: 0.5rem;">SRCeI y RRVV son marcas de sus respectivos duenos. Multasscan actua como intermediario.</p>
+    <p style="margin-top: 0.5rem;">SRCEI y RRVV son marcas de sus respectivos dueños. Multasscan actúa como intermediario.</p>
   </footer>
 </div>
 
